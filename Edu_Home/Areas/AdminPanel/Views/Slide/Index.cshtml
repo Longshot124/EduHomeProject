@@ -1,0 +1,50 @@
+﻿@using Edu_Home.DAL.Entities
+@*@using Edu_Home.DAL.Entities*@
+
+@model List<Slider>
+
+
+<div class="row col-lg-12">
+    <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Basic Table</h4>
+                <a class="btn btn-primary" asp-action="create">Create</a>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Subtile</th>
+                                <th>Buttons</th>
+                                <th>Button Link</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <img style="border-radius:0px; object-fit:contain; height:100px; width:100px;" src="/assets/img/slider/@item.ImageUrl" alt="image">
+                                    <td>@item.Title</td>
+                                    <td>@item.SubTitle</td>
+                                    <td>@item.ButtonText</td>
+                                    <td>@item.ButtonUrl</td>
+                                    
+                                    <td>
+                                        <a class="btn btn-primary" asp-action="details" asp-route-id="@item.Id">Details</a>
+                                        <a class="btn btn-success" asp-action="update" asp-route-id="@item.Id">Update</a>
+
+                                        <button class="btn btn-danger" id="delete-category" value="@item.Id">Delete</button>
+                                    </td>
+                                </tr>
+                           }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
