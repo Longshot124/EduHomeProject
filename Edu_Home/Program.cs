@@ -1,3 +1,4 @@
+using Edu_Home.Areas.AdminPanel.Data;
 using Edu_Home.DAL;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,10 @@ namespace Edu_Home
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 
             });
+
+            Constants.RootPath = builder.Environment.WebRootPath;
+            Constants.SliderPath = Path.Combine(Constants.RootPath, "img", "slider");
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

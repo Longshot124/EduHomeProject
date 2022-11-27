@@ -1,11 +1,12 @@
 ﻿@using Edu_Home.Areas.AdminPanel.Models
-@model SlideImageCreateModel
+@model SlideImageUpdateModel
 <div class="row col-sm-6">
     <div class="col-sm-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title"> Create category</h4>
-                <form class="forms-sample" method="post" asp-action="Create" enctype="multipart/form-data">
+                <h4 class="card-title"> Update category</h4>
+                <img src="~/img/slider/@Model.Image" style="width:130px;height:130px" />
+                <form class="forms-sample" method="post" asp-action="Update" enctype="multipart/form-data">
                     <div class="form-group">
                         <label asp-for="Image">Name</label>
                         <input asp-for="Image" class="form-control" placeholder="Name" accept="image/*">
@@ -31,7 +32,7 @@
                         <input asp-for="ButtonUrl" class="form-control" placeholder="ButtonUrl">
                         <span asp-validation-for="ButtonText" class="text-danger"></span>
                     </div>*@
-                    
+
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light" asp-action="Index">Cancel</button>
                 </form>

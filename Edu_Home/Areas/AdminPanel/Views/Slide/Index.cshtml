@@ -1,4 +1,4 @@
-﻿@using Edu_Home.DAL.Entities
+﻿
 @*@using Edu_Home.DAL.Entities*@
 
 @model List<Slider>
@@ -26,11 +26,11 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <img style="border-radius:0px; object-fit:contain; height:100px; width:100px;" src="/assets/img/slider/@item.ImageUrl" alt="image">
+                                    <img style="border-radius:0px; object-fit:contain; height:100px; width:100px;" src="~/img/slider/@item.ImageUrl" alt="image">
                                     <td>@item.Title</td>
                                     <td>@item.SubTitle</td>
                                     <td>@item.ButtonText</td>
-                                    <td>@item.ButtonUrl</td>
+                                    @*<td>@item.ButtonUrl</td>*@
                                     
                                     <td>
                                         <a class="btn btn-primary" asp-action="details" asp-route-id="@item.Id">Details</a>

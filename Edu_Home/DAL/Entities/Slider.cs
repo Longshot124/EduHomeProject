@@ -8,8 +8,9 @@ namespace Edu_Home.DAL.Entities
         public string ?SubTitle { get; set; }
         public string ?ImageUrl { get; set; }
         public string ?ButtonText { get; set; }
-        [DataType(DataType.Url)]
-        public string ?ButtonUrl { get; set; } 
+
+        //[DataType(DataType.Url)]
+        //public string ?ButtonUrl { get; set; } 
 
     }
 }
