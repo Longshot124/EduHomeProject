@@ -1,5 +1,5 @@
-using Edu_Home.Areas.AdminPanel.Data;
 using Edu_Home.DAL;
+using Edu_Home.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Edu_Home
@@ -21,6 +21,7 @@ namespace Edu_Home
 
             Constants.RootPath = builder.Environment.WebRootPath;
             Constants.SliderPath = Path.Combine(Constants.RootPath, "img", "slider");
+            Constants.TeacherPath = Path.Combine(Constants.RootPath, "img", "teacher");
 
             var app = builder.Build();
 

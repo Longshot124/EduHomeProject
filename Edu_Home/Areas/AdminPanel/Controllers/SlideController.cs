@@ -2,6 +2,7 @@
 using Edu_Home.Areas.AdminPanel.Models;
 using Edu_Home.DAL;
 using Edu_Home.DAL.Entities;
+using Edu_Home.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,105 +36,127 @@ namespace Edu_Home.Areas.AdminPanel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SlideImageCreateModel model)
         {
-            if (!ModelState.IsValid)
-                return View();
+            if (!ModelState.IsValid) return View(model);
 
-            if (!model.Image.ContentType.Contains("image"))
+            if (!model.Image.IsImage())
             {
                 ModelState.AddModelError("Image", "Şəkil seçməlisiniz");
                 return View();
             }
 
-            if (model.Image.Length > 1024 * 1024 * 2042)
+            if (!model.Image.IsAllowedSize(5))
             {
                 ModelState.AddModelError("Image", "Şəkil ölçüsü 1MB artıq olmamalıdır");
                 return View();
             }
 
-            var unicalName = $"{Guid.NewGuid}-{model.Image.FileName}";
-            var path = Path.Combine(_environment.WebRootPath, "img/slider", unicalName);
-            var fs = new FileStream(path, FileMode.Create);
+            var unicalName = await model.Image.GenerateFile(Constants.SliderPath);
 
-            await model.Image.CopyToAsync(fs);
-
-            await _eduDbContext.Sliders.AddAsync(new Slider
+            var slider = new Slider
             {
                 ImageUrl = unicalName,
                 Title = model.Title,
                 SubTitle = model.SubTitle,
-                ButtonText = model.ButtonText,
-                //ButtonUrl = model.ButtonUrl
-            });
+                ButtonText = model.ButtonText,               
+            };
 
+            await _eduDbContext.Sliders.AddAsync(slider);
+            await _eduDbContext.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Update(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var sliders = await _eduDbContext.Sliders.FindAsync(id);
+
+            if(sliders == null) return NotFound();
+            var sliderViewModel = new SlideImageUpdateModel
+            {
+                Id = sliders.Id,
+                Title = sliders.Title,
+                SubTitle = sliders.SubTitle,
+                ButtonText = sliders.ButtonText,
+                ImageUrl = sliders.ImageUrl,
+            };
+
+            return View(sliderViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int? id, SlideImageUpdateModel model)
+        {
+            if (id == null) return NotFound();
+
+            var sliders = await _eduDbContext.Sliders.FindAsync(id);
+
+            if (sliders == null) return NotFound();
+
+            if (sliders.Id != id) return BadRequest();
+
+            
+
+            if(model.Image != null)
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(new SlideImageUpdateModel
+                    {
+                        ImageUrl = sliders.ImageUrl
+                    });
+                }
+
+                if (!model.Image.IsImage())
+                {
+                    ModelState.AddModelError("Image", "Şəkil seçməlisiniz");
+
+                    return View(new SlideImageUpdateModel
+                    {
+                        ImageUrl = sliders.ImageUrl
+                    });
+                }
+
+                if (!model.Image.IsAllowedSize(5))
+                {
+                    ModelState.AddModelError("Image", "Şəkil ölçüsü 5MB artıq olmamalıdır");
+
+                    return View(model);
+                }
+                var unicalPath = await model.Image.GenerateFile(Constants.SliderPath);
+                sliders.ImageUrl = unicalPath;
+            }          
+         
+            sliders.SubTitle = model.SubTitle;
+            sliders.Title = model.Title;
+            sliders.ButtonText = model.ButtonText;
 
             await _eduDbContext.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Update(int id)
-        {
-            if (id == null) return NotFound();
-
-            var slideImage = await _eduDbContext.Sliders.FindAsync(id);
-
-            return View(new SlideImageUpdateModel
-            {
-                ImageUrl = slideImage.Name
-            });
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id, SlideImageUpdateModel model)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
 
-            var slideImage = await _eduDbContext.Sliders.FindAsync(id);
+            var slider = await _eduDbContext.Sliders.FindAsync(id);
 
-            if (slideImage == null) return NotFound();
+            if (slider == null) return NotFound();
 
-            if (slideImage.Id != id) return BadRequest();
+            if (slider.ImageUrl == null) return NotFound();
 
-            if (!ModelState.IsValid)
-            {
-                return View(new SlideImageUpdateModel
-                {
-                    ImageUrl = slideImage.Name
-                });
-            }
+            if (slider.Id != id) return BadRequest();
+            var sliderPath = Path.Combine(Constants.RootPath, "img", "slider", slider.ImageUrl);
 
-            if (!model.Image.ContentType.Contains("image"))
-            {
-                ModelState.AddModelError("Image", "Şəkil seçməlisiniz");
+            if (System.IO.File.Exists(sliderPath))
+                System.IO.File.Delete(sliderPath);
 
-                return View(new SlideImageUpdateModel
-                {
-                    ImageUrl = slideImage.Name
-                });
-            }
-
-            if (model.Image.Length > 1024 * 1024 * 2042)
-            {
-                ModelState.AddModelError("Image", "Şəkil ölçüsü 1MB artıq olmamalıdır");
-
-                return View(new SlideImageUpdateModel
-                {
-                    ImageUrl = slideImage.Name
-                });
-            }
-
-            var unicalPath = Path.Combine(Constants.SliderPath);
-
-            if (System.IO.File.Exists(unicalPath))
-                System.IO.File.Delete(unicalPath);
-
-            var unicalName = await model.Image.GenerateFile(Constants.RootPath);
-
-            slideImage.Name = unicalName;
-            slideImage.SubTitle = model.SubTitle;
-            slideImage.Title = model.Title;
-            slideImage.ButtonText = model.ButtonText;
+            _eduDbContext.Sliders.Remove(slider);
 
             await _eduDbContext.SaveChangesAsync();
 

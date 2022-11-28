@@ -1,0 +1,110 @@
+﻿@using Edu_Home.Areas.AdminPanel.Models
+@model TeacherCreateModel
+
+<div class="row col-sm-6">
+    <div class="col-sm-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"> Create Teacher</h4>
+                <form class="forms-sample" method="post" asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="All">
+                        
+                    </div>    
+                    <div class="form-group">
+                        <label asp-for="Image">Name</label>
+                        <input asp-for="Image" class="form-control" placeholder="Name" accept="image/*">
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FullName">Full Name</label>
+                        <input asp-for="FullName" class="form-control" placeholder="Full Name">
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Position">Position</label>
+                        <input asp-for="Position" class="form-control" placeholder="Position">
+                        <span asp-validation-for="Position" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="About">About</label>
+                        <input asp-for="About" class="form-control" placeholder="About">
+                        <span asp-validation-for="About" class="text-danger"></span>
+                    </div> 
+                    <div class="form-group">
+                        <label asp-for="Degree">Degree</label>
+                        <input asp-for="Degree" class="form-control" placeholder="Degree">
+                        <span asp-validation-for="Degree" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Hobbies">Hobbies</label>
+                        <input asp-for="Hobbies" class="form-control" placeholder="Hobbies">
+                        <span asp-validation-for="Hobbies" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Faculty">Faculty</label>
+                        <input asp-for="Faculty" class="form-control" placeholder="Faculty">
+                        <span asp-validation-for="Faculty" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Experience">Experience</label>
+                        <input asp-for="Experience" class="form-control" placeholder="Experience">
+                        <span asp-validation-for="Experience" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Mail">Mail</label>
+                        <input asp-for="Mail" class="form-control" placeholder="Mail">
+                        <span asp-validation-for="Mail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber">PhoneNumber</label>
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="PhoneNumber">
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Skype">Skype</label>
+                        <input asp-for="Skype" class="form-control" placeholder="Skype">
+                        <span asp-validation-for="Skype" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LanguageSkill">LanguageSkill</label>
+                        <input asp-for="LanguageSkill" class="form-control" placeholder="LanguageSkill">
+                        <span asp-validation-for="LanguageSkill" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DesignSkill">DesignSkill</label>
+                        <input asp-for="DesignSkill" class="form-control" placeholder="DesignSkill">
+                        <span asp-validation-for="DesignSkill" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TeamLiderSkill">TeamLiderSkill</label>
+                        <input asp-for="TeamLiderSkill" class="form-control" placeholder="TeamLiderSkill">
+                        <span asp-validation-for="TeamLiderSkill" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CommunicationSkill">CommunicationSkill</label>
+                        <input asp-for="CommunicationSkill" class="form-control" placeholder="CommunicationSkill">
+                        <span asp-validation-for="CommunicationSkill" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DevelopmentSkill">DevelopmentSkill</label>
+                        <input asp-for="DevelopmentSkill" class="form-control" placeholder="DevelopmentSkill">
+                        <span asp-validation-for="DevelopmentSkill" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="InnovationSkill">InnovationSkill</label>
+                        <input asp-for="InnovationSkill" class="form-control" placeholder="InnovationSkill">
+                        <span asp-validation-for="InnovationSkill" class="text-danger"></span>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light" asp-action="Index">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

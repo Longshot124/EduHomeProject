@@ -12,7 +12,6 @@ namespace Edu_Home.Areas.AdminPanel.Models
         
         public string ?ButtonText { get; set; }
 
-        //[DataType(DataType.Url)]
-        //public string ?ButtonUrl { get; set; }
+        
     }
 }
