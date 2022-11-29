@@ -22,6 +22,10 @@ namespace Edu_Home
             Constants.RootPath = builder.Environment.WebRootPath;
             Constants.SliderPath = Path.Combine(Constants.RootPath, "img", "slider");
             Constants.TeacherPath = Path.Combine(Constants.RootPath, "img", "teacher");
+            Constants.BlogPath = Path.Combine(Constants.RootPath, "img", "blog");
+
+
+
 
             var app = builder.Build();
 
