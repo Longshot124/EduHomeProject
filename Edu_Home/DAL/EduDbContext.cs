@@ -13,5 +13,7 @@ namespace Edu_Home.DAL
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+
+        public DbSet<About> About { get; set; }
     }
 }

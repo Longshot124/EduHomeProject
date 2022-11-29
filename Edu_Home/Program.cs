@@ -23,6 +23,7 @@ namespace Edu_Home
             Constants.SliderPath = Path.Combine(Constants.RootPath, "img", "slider");
             Constants.TeacherPath = Path.Combine(Constants.RootPath, "img", "teacher");
             Constants.BlogPath = Path.Combine(Constants.RootPath, "img", "blog");
+            Constants.AboutPath = Path.Combine(Constants.RootPath, "img", "about");
 
 
 
