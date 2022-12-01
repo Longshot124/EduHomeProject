@@ -8,5 +8,6 @@ namespace Edu_Home.ViewModels
         public List<Teacher> Teachers { get; set; } = new List<Teacher>();
         public List<Blog> Blogs { get; set; } = new List<Blog>();
         public List<About> Abouts { get; set; } = new List<About>();
+        public List<Course> Courses { get; set; } = new List<Course> ();
     }
 }
