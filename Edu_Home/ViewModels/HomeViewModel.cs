@@ -7,6 +7,6 @@ namespace Edu_Home.ViewModels
         public List<Slider> Sliders { get; set; } = new List<Slider>();
         public List<Teacher> Teachers { get; set; } = new List<Teacher>();
         public List<Blog> Blogs { get; set; } = new List<Blog>();
-        public List<About> About { get; set; } = new List<About>();
+        public List<About> Abouts { get; set; } = new List<About>();
     }
 }

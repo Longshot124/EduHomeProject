@@ -155,7 +155,7 @@ namespace Edu_Home.Areas.AdminPanel.Controllers
 
             if (System.IO.File.Exists(sliderPath))
                 System.IO.File.Delete(sliderPath);
-
+    
             _eduDbContext.Sliders.Remove(slider);
 
             await _eduDbContext.SaveChangesAsync();
