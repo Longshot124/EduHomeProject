@@ -9,6 +9,7 @@
         public static string AboutPath;
         public static string CoursePath;
         public static string CategoryPath;
+        public static string SpeakerPath;
     }
 
 

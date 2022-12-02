@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="wwwroot\img\speaker\" />
   </ItemGroup>
 
   <ItemGroup>
