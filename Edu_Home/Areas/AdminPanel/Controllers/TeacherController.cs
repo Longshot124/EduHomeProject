@@ -208,6 +208,8 @@ namespace Edu_Home.Areas.AdminPanel.Controllers
             await _eduDbContext.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
+
+
         }
     }
     
