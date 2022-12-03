@@ -1,7 +1,10 @@
 ﻿@*@using Edu_Home.DAL.Entities*@
 
-@model List<Speaker>
-
+@model IEnumerable<Speaker>
+@{
+    IEnumerable<Speaker> speakers = Model;
+    ViewData["Title"] = "Index";
+}
 
 <div class="row col-lg-12">
     <div class="col-lg-8 grid-margin stretch-card">
@@ -36,6 +39,7 @@
                                     <td>
                                         @item.Company
                                     </td>
+                                    
                                    
 
                                     <td class="text-nowrap">

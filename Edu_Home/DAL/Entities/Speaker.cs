@@ -6,5 +6,7 @@
         public string ImageUrl { get; set; }
         public string Profession { get; set; }
         public string Company { get; set; }
+        public List<SpeakerEvent> speakerEvents { get; set; }
+
     }
 }

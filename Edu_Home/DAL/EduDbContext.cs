@@ -17,5 +17,7 @@ namespace Edu_Home.DAL
         public DbSet<Course> Courses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Speaker> Speakers { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<SpeakerEvent> SpeakerEvents { get; set; }
     }
 }
