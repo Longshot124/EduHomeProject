@@ -1,12 +1,14 @@
 using Edu_Home.DAL;
+using Edu_Home.DAL.Entities;
 using Edu_Home.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Edu_Home
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -15,10 +17,24 @@ namespace Edu_Home
 
             builder.Services.AddDbContext<EduDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+                    builder =>
+                    {
+                        builder.MigrationsAssembly(nameof(Edu_Home));
+                    });
 
             });
 
+            builder.Services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<EduDbContext>().AddDefaultTokenProviders();
+            builder.Services.Configure<AdminUser>(builder.Configuration.GetSection("AdminUser"));
             Constants.RootPath = builder.Environment.WebRootPath;
             Constants.SliderPath = Path.Combine(Constants.RootPath, "img", "slider");
             Constants.TeacherPath = Path.Combine(Constants.RootPath, "img", "teacher");
@@ -46,8 +62,19 @@ namespace Edu_Home
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            using(var scope = app.Services.CreateScope())
+            {
+                var serviceProvider=scope.ServiceProvider;
+
+                var dataInitializer = new DataInitializer(serviceProvider);
+
+                await dataInitializer.SeedData();
+            }
+
             app.UseRouting();
 
+            
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -67,7 +94,7 @@ namespace Edu_Home
 
 
 
-            app.Run();
+            await app.RunAsync();
         }
     }
 }

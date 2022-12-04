@@ -1,9 +1,10 @@
 ﻿using Edu_Home.DAL.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Edu_Home.DAL
 {
-    public class EduDbContext : DbContext
+    public class EduDbContext : IdentityDbContext<User>
     {
         public EduDbContext(DbContextOptions<EduDbContext> options) : base(options)
         {
