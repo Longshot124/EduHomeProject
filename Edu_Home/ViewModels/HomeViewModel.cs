@@ -11,5 +11,6 @@ namespace Edu_Home.ViewModels
         public List<Course> Courses { get; set; } = new List<Course> ();
         public List<Speaker> Speaker { get; set; }= new List<Speaker> ();
         public List<Event> Events { get; set; } = new List<Event> ();
+        
     }
 }

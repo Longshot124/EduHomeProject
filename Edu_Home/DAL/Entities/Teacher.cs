@@ -14,12 +14,12 @@
         public string Mail { get; set; }
         public string PhoneNumber { get; set; }
         public string Skype { get; set; }
-        public string LanguageSkill { get; set; }
-        public string DesignSkill { get; set; }
-        public string TeamLiderSkill { get; set; }
-        public string InnovationSkill { get;set; }
-        public string DevelopmentSkill { get; set; }
-        public string CommunicationSkill { get; set; }
+        public byte LanguageSkill { get; set; }
+        public byte DesignSkill { get; set; }
+        public byte TeamLiderSkill { get; set; }
+        public byte InnovationSkill { get;set; }
+        public byte DevelopmentSkill { get; set; }
+        public byte CommunicationSkill { get; set; }
 
 
     }
