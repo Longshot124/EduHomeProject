@@ -1,0 +1,16 @@
+﻿@using Edu_Home.DAL.Entities
+@{
+    List<FooterContact> footerContacts = Model;
+}
+@foreach (var footerContact in footerContacts)
+{
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="single-widget">
+            <h3>get in touch</h3>
+            <p>@footerContact.Address<br>@footerContact.SecondAddress</p>
+            <p>@footerContact.PhoneNumber<br>@footerContact.SecondPhoneNumber</p>
+            <p>@footerContact.Email<br>@footerContact.Website</p>
+        </div>
+    </div>
+}
+

@@ -12,6 +12,9 @@ namespace Edu_Home.ViewModels
         public List<Speaker> Speaker { get; set; }= new List<Speaker> ();
         public List<Event> Events { get; set; } = new List<Event> ();
         public List<FooterLogo> FooterLogos { get; set; } = new List<FooterLogo> ();
-        
+        public List<FooterContact> FooterContacts { get; set; } = new List<FooterContact>();
+
+
+
     }
 }

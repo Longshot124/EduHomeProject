@@ -1,0 +1,23 @@
+﻿@using Edu_Home.DAL.Entities
+@{
+    List<FooterLogo> footerLogos = Model;
+}
+@foreach (var footerLogo in footerLogos)
+{
+    <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="single-widget pr-60">
+            <div class="footer-logo pb-25">
+                <a asp-controller="home" asp-action="index"><img src="~/img/logo/@footerLogo.LogoUrl" alt="eduhome"></a>
+            </div>
+            <p>@footerLogo.Description</p>
+            <div class="footer-social">
+                <ul>
+                    <li><a target="_blank" href="@footerLogo.FacebookLink"><i class="zmdi zmdi-facebook"></i></a></li>
+                    <li><a target="_blank" href="@footerLogo.PisterestLink"><i class="zmdi zmdi-pinterest"></i></a></li>
+                    <li><a target="_blank" href="@footerLogo.VimeoLink"><i class="zmdi zmdi-vimeo"></i></a></li>
+                    <li><a target="_blank" href="@footerLogo.TwitterLink"><i class="zmdi zmdi-twitter"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
