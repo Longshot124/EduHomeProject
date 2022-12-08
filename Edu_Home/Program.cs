@@ -43,7 +43,9 @@ namespace Edu_Home
             Constants.CoursePath = Path.Combine(Constants.RootPath, "img", "course");
             Constants.SpeakerPath = Path.Combine(Constants.RootPath, "img", "speaker");
             Constants.EventPath = Path.Combine(Constants.RootPath, "img", "event");
-            
+            Constants.FooterLogoPath = Path.Combine(Constants.RootPath, "img", "logo");
+
+
 
 
 

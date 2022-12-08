@@ -1,0 +1,51 @@
+﻿@using Edu_Home.Areas.AdminPanel.Models
+@model FooterContactUpdateModel
+<div class="row col-sm-6">
+    <div class="col-sm-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"> Create category</h4>
+                <form class="forms-sample" method="post" asp-action="Update" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Address">Address</label>
+                        <input asp-for="Address" class="form-control" placeholder="Address">
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SecondAddress">SecondAddress</label>
+                        <input asp-for="SecondAddress" class="form-control" placeholder="SecondAddress">
+                        <span asp-validation-for="SecondAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email">Email</label>
+                        <input asp-for="Email" class="form-control" placeholder="Email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber">PhoneNumber</label>
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="PhoneNumber">
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SecondPhoneNumber">SecondPhoneNumber</label>
+                        <input asp-for="SecondPhoneNumber" class="form-control" placeholder="SecondPhoneNumber">
+                        <span asp-validation-for="SecondPhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Website">Website</label>
+                        <input asp-for="Website" class="form-control" placeholder="Website">
+                        <span asp-validation-for="Website" class="text-danger"></span>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light" asp-action="Index">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

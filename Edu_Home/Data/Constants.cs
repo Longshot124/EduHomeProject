@@ -11,7 +11,7 @@
         public static string CategoryPath;
         public static string SpeakerPath;
         public static string EventPath;
-        
+        public static string FooterLogoPath;
 
         public const string AdminRole = "Admin";
         
